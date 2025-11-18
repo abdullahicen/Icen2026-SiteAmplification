@@ -1,5 +1,5 @@
-# Icen2026-SiteAmplification
-This program computes period-dependent site amplification factors using the Icen (2026) regional model for Türkiye. The user only needs to provide Vs30, Latitude, Longitude, and rock PSA (PSAr). The code automatically finds the correct region based on coordinates and applies the appropriate regional amplification model.
-![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
-![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-lightgrey.svg)
+Icen2026 – Regional Site Amplification Model for Türkiye
+<p align="center"> <img src="https://img.shields.io/badge/Python-3.10+-blue.svg" /> <img src="https://img.shields.io/badge/License-MIT-green.svg" /> <img src="https://img.shields.io/badge/Model-Icen2026-black.svg" /> <img src="https://img.shields.io/badge/Regions-Marmara%20%7C%20Aegean%20%7C%20Coastal%20Aegean%20%7C%20East-blueviolet.svg" /> <img src="https://img.shields.io/badge/Geo-Polygon%20Region%20Mapping-success.svg" /> </p>
+
+This repository provides the full implementation of the Icen (2026) regional, period-dependent site amplification model for Türkiye.
+The model automatically selects the correct region (Marmara, Aegean, Coastal Aegean, East) based on geographic coordinates and computes nonlinear + linear amplification for all periods
