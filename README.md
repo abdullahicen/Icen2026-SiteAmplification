@@ -63,8 +63,8 @@ For each site:
         Station	Vs30	Latitude	Longitude
 
   Periods.txt
-    
-        One period (s) per line
+
+      One period (s) per line
     
     Must match the periods used in your analyses
     
