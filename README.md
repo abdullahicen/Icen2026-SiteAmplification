@@ -105,3 +105,8 @@ Install required Python packages:
 If you use this model in research or engineering studies, please cite:
 
 Icen, A. (2026). Bayesian Site Amplification Modeling with Regional Effects: Application in Türkiye. Bulletin of Earthquake Engineering (in Press)
+
+## 🙏 Acknowledgments
+
+I gratefully acknowledge Prof. Abdullah Sandıkkaya for his continuous guidance, scientific insight, and contributions to the underlying methodology of this work. Special thanks to Baran Güryuva for his valuable technical feedback and support during the development of this project.
+
