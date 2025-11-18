@@ -1,21 +1,4 @@
 Icen2026 – Regional Site Amplification Model for Türkiye
 <p align="center"> <img src="https://img.shields.io/badge/Python-3.10+-blue.svg" />  <img src="https://img.shields.io/badge/Model-Icen2026-black.svg" /> <img src="https://img.shields.io/badge/Regions-Marmara%20%7C%20Aegean%20%7C%20Coastal%20Aegean%20%7C%20East-blueviolet.svg" /> <img src="https://img.shields.io/badge/Geo-Polygon%20Region%20Mapping-success.svg" /> </p>
 
-This repository provides the full implementation of the Icen (2026) regional, period-dependent site amplification model for Türkiye.
-The model automatically selects the correct region (Marmara, Aegean, Coastal Aegean, East) based on geographic coordinates and computes nonlinear + linear amplification for all periods
-
-Icen2026-SiteAmplification/
-│
-├── main.py                # Main script (runs model and writes Output.xlsx)
-├── Icen2026.py            # Region selection + amplification equations
-├── Periods.txt            # Spectral periods (one per line)
-├── PSAr.txt               # Rock PSA values per period (same length as Periods.txt)
-├── Input.xlsx             # User input: Station, Vs30, Latitude, Longitude
-├── Output.xlsx            # Auto-generated results
-│
-└── Coefficients/
-    ├── Icen_coeffs.txt
-    └── Coordinates/
-         └── Coordinates.xlsx   # Region polygons in WKT format
-
-Coefficients/Coordinates/Coordinates.xlsx
+Icen2026 – Regional Site Amplification Model for Türkiye — This repository implements the regional, period-dependent Icen (2026) site amplification model for Türkiye, including automatic region selection using polygon boundaries and computation of linear + nonlinear amplification for all periods. Folder structure: main.py (main driver), Icen2026.py (region detection + amplification formulas), Periods.txt (list of periods), PSAr.txt (rock PSA per period), Input.xlsx (Station, Vs30, Latitude, Longitude), Output.xlsx (generated results), and Coefficients/Icen_coeffs.txt with Coefficients/Coordinates/Coordinates.xlsx (WKT region polygons). Each site's coordinates are checked against polygons (Marmara, Coastal Aegean, Aegean, East) and the corresponding regional model is applied automatically. Input.xlsx requires columns: Station, Vs30, Latitude, Longitude. Periods.txt contains period values (one per line). PSAr.txt contains reference rock PSA values (same length and order as Periods.txt). Running python main.py generates Output.xlsx, containing input columns plus amplification factors for each spectral period. Dependencies: numpy, pandas, shapely, openpyxl. Licensed under MIT. If you use this model, cite: Icen, A. (2026), Regional Site Amplification Model for Türkiye.
