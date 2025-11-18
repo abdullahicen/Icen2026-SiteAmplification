@@ -4,102 +4,104 @@ Icen2026 – Regional Site Amplification Model for Türkiye
 This repository provides the complete implementation of the Icen (2026) regional, period-dependent site amplification model for Türkiye.
 The framework includes automatic region detection, period interpolation, and nonlinear site response scaling using calibrated regional coefficients.
 
-📍 Overview
+## 📍 Overview
 
-The model assigns each site to one of the four tectonically consistent regions:
-
-Marmara
-
-Aegean
-
-Coastal Aegean
-
-East Türkiye
+    The model assigns each site to one of the four tectonically consistent regions:
+    
+    Marmara
+    
+    Aegean
+    
+    Coastal Aegean
+    
+    East Türkiye
 
 Region boundaries are stored as polygons in:
 
-Coefficients/Coordinates/Coordinates.xlsx
+    Coefficients/Coordinates/Coordinates.xlsx
 
-📁 Repository Structure
+## 📁 Repository Structure
+
+<pre>
 Icen2026-SiteAmplification/
 │
-├── main.py                 # Main driver script
-├── Icen2026.py             # Region mapping + amplification functions
-├── Input.xlsx              # Station, Vs30, Latitude, Longitude
-├── Periods.txt             # List of spectral periods
-├── PSAr.txt                # Reference PSA values (same length/order as Periods.txt)
-├── Output.xlsx             # Generated output
+├── main.py                     # Entry point: reads input, runs model pipeline
+├── Icen2026.py                 # Core module: region detection + amplification model
+│
+├── Input.xlsx                  # Site metadata: Station, Vs30, Latitude, Longitude
+├── Periods.txt                 # Spectral periods (s) for evaluation
+├── PSAr.txt                    # Period-dependent reference PGV, PGA or PSA at rock
+├── Output.xlsx                 # Computed amplification factors (auto-generated)
 │
 └── Coefficients/
-    ├── Icen_coeffs.txt     # Period-dependent model coefficients
+    ├── Icen_coeffs.txt         # Period-dependent coefficients (interpolated internally)
     └── Coordinates/
-         └── Coordinates.xlsx   # Region polygons (WKT)
+        └── Coordinates.xlsx    # Regional polygon definitions (WKT geometry)
+</pre>
 
-🔧 How the Model Works
+## 🔧 How the Model Works
 
 For each site:
 
-Determine region using geographic coordinates and polygon boundaries.
+* Determine region using geographic coordinates and polygon boundaries.
+    
+* Load period-dependent coefficients from Icen_coeffs.txt.
+    
+* Interpolate coefficients if the requested period is not explicitly tabulated.
+    
+* Compute linear term using Vs* and hinge velocities (V1, Vc).
+    
+* Compute nonlinear term using reference rock PSA (PSAr.txt).
+    
+* Output amplification factors for all periods.
 
-Load period-dependent coefficients from Icen_coeffs.txt.
+## 📥 Input Requirements
+* Required columns:
+    
+    Input.xlsx
 
-Interpolate coefficients if the requested period is not explicitly tabulated.
+        Station	Vs30	Latitude	Longitude
 
-Compute linear term using Vs* and hinge velocities (V1, Vc).
+  Periods.txt
+    
+        One period (s) per line
+    
+    Must match the periods used in your analyses
+    
+        PSAr.txt -----> PSA_r(T) values
+    
+    Must be the same length and order as Periods.txt
 
-Compute nonlinear term using reference rock PSA (PSAr.txt).
-
-Output amplification factors for all periods.
-
-📥 Input Requirements
-Input.xlsx
-
-Required columns:
-
-Station	Vs30	Latitude	Longitude
-Periods.txt
-
-One period (s) per line
-
-Must match the periods used in your analyses
-
-PSAr.txt
-
-PSA_r(T) values
-
-Must be the same length and order as Periods.txt
-
-📤 Output
+## 📤 Output
 
 The script generates:
 
-Output.xlsx
-
-
+    Output.xlsx
+    
 which contains:
+    
+* Original input columns
+    
+* Amplification factors for each period
+    
+* Columns are added in the order of Periods.txt.
 
-Original input columns
-
-Amplification factors for each period
-
-Columns are added in the order of Periods.txt.
-
-▶️ Running the Code
+## ▶️ Running the Code
 
 Install required Python packages:
+    
+    numpy
+    pandas
+    shapely
+    openpyxl
 
-numpy
-pandas
-shapely
-openpyxl
 
+## Run the model:
 
-Run the model:
+    python main.py
 
-python main.py
-
-📚 Citation
+## 📚 Citation
 
 If you use this model in research or engineering studies, please cite:
 
-Icen, A. (2026). Regional Site Amplification Model for Türkiye.
+Icen, A. (2026). Bayesian Site Amplification Modeling with Regional Effects: Application in Türkiye. Bulletin of Earthquake Engineering (in Press)
